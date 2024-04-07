@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #ffff;
+            font-family: sans-serif;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.7);
+            border: 1px solid #717377;
+
+        }
+
+        table,
+        th,
+        td {
+            color: white;
+            border: 1px solid;
+        }
+
+        .product-count {
+            font-size: 15;
+            font-weight: 100
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="col-sm-6">
+                    <div class="card p-4 ">
+                        <table class="table table-dark table-hover p-2 ">
+                            <tr>
+                                <th class="text-center">Product Name</th>
+                                <th class="text-center">Product Price</th>
+                            </tr>
+                            <tr>
+                                <td>Apple</td>
+                                <td>200kg</td>
+                            </tr>
+                            <tr>
+                                <td>Banana</td>
+                                <td>6/pc</td>
+                            </tr>
+
+                            <tr>
+                                <td>Carrot</td>
+                                <td>50kg</td>
+                            </tr>
+                            <tr>
+                                <td>Broccoli</td>
+                                <td>130/pc</td>
+                            </tr>
+                       
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Right Column with a food bill -->
+                <div class=" p-4">
+                    <div>Bill Detail:</div>
+                    <div>
+                        <!-- Food bill table -->
+                        <table class="table table-dark table-hover p-2">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Weight/Count</th>
+                                    <th>Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item_name, details in Items.items() %}
+                                <tr>
+                                    <td>{{ item_name }}</td>
+                                    <td>{{ details.Weight or details.Count }}</td>
+                                    <td>{{ details.Cost }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>Total Bill: {{ TotalBill }}</div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="mt-4">
+            <form method="POST" action="/start_detection">
+                <div class="text-center mt-4">
+                    <input type="submit" class="btn btn-primary text-center mt-4" value="Start Detection Again">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
